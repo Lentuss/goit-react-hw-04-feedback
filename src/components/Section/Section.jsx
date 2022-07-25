@@ -4,13 +4,28 @@ import Statistic from '../Statistic';
 import FeedBackForm from '../FeedbackForm';
 import { FeedbackContainer, FormTitle } from './Section.styled';
 
-const Section = ({ title, state, onFeedbackLeave, total, positivePercent }) => {
+const Section = ({
+  title,
+  good,
+  neutral,
+  bad,
+  onFeedbackLeave,
+  total,
+  positivePercent,
+}) => {
   return (
     <FeedbackContainer>
       <FormTitle>{title}</FormTitle>
-      <FeedBackForm state={state} onFeedbackLeave={onFeedbackLeave} />
+      <FeedBackForm
+        good={good}
+        neutral={neutral}
+        bad={bad}
+        onFeedbackLeave={onFeedbackLeave}
+      />
       <Statistic
-        state={state}
+        good={good}
+        neutral={neutral}
+        bad={bad}
         total={total}
         positivePercent={positivePercent}
       />
