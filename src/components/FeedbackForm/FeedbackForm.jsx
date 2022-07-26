@@ -18,5 +18,8 @@ const FeedBackForm = ({ onFeedbackLeave, good, neutral, bad }) => {
 export default FeedBackForm;
 
 FeedBackForm.propTypes = {
+  good: PropTypes.number,
+  neutral: PropTypes.number,
+  bad: PropTypes.number,
   onFeedbackLeave: PropTypes.func,
 };

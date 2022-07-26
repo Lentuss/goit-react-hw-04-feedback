@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import Section from './Section';
+import Statistic from './Statistic';
+import FeedBackForm from './FeedbackForm';
 
 const App = () => {
   const [good, setGood] = useState(0);
@@ -31,15 +33,21 @@ const App = () => {
     Number.parseInt((good / countTotalFeedback()) * 100);
 
   return (
-    <Section
-      title={'Please, leave your feedback'}
-      good={good}
-      neutral={neutral}
-      bad={bad}
-      onFeedbackLeave={handleClick}
-      total={countTotalFeedback()}
-      positivePercent={countPositiveFeedbackPercentage()}
-    />
+    <Section title={'Please, leave your feedback'}>
+      <FeedBackForm
+        good={good}
+        neutral={neutral}
+        bad={bad}
+        onFeedbackLeave={handleClick}
+      />
+      <Statistic
+        good={good}
+        neutral={neutral}
+        bad={bad}
+        total={countTotalFeedback()}
+        positivePercent={countPositiveFeedbackPercentage()}
+      />
+    </Section>
   );
 };
 
