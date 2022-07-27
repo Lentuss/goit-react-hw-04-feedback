@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Section from './Section';
 import Statistic from './Statistic';
 import FeedBackForm from './FeedbackForm';
+import Notification from './Notification';
 
 const App = () => {
   const [good, setGood] = useState(0);
@@ -24,6 +25,7 @@ const App = () => {
         break;
     }
   };
+  const buttons = Object.keys({ good, neutral, bad });
 
   const countTotalFeedback = () => {
     return good + neutral + bad;
@@ -31,22 +33,21 @@ const App = () => {
 
   const countPositiveFeedbackPercentage = () =>
     Number.parseInt((good / countTotalFeedback()) * 100);
-
+  const total = countTotalFeedback();
   return (
     <Section title={'Please, leave your feedback'}>
-      <FeedBackForm
-        good={good}
-        neutral={neutral}
-        bad={bad}
-        onFeedbackLeave={handleClick}
-      />
-      <Statistic
-        good={good}
-        neutral={neutral}
-        bad={bad}
-        total={countTotalFeedback()}
-        positivePercent={countPositiveFeedbackPercentage()}
-      />
+      <FeedBackForm buttons={buttons} onFeedbackLeave={handleClick} />
+      {total !== 0 ? (
+        <Statistic
+          good={good}
+          neutral={neutral}
+          bad={bad}
+          total={total}
+          positivePercent={countPositiveFeedbackPercentage()}
+        />
+      ) : (
+        <Notification message="No feedback yet" />
+      )}
     </Section>
   );
 };
